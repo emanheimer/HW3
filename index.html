@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+   
+    <p id="result"></p>
+    
+    <script>
+
+    //Create arrays for each set of characters. 
+    var special = "!#$%&'()*+,-./:;<=>?@[]\^_`{|}~\"";
+    var numeric = "0123456789";
+    var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var mixedArray = "";
+
+    //Ask what stuff the person wants in the password.
+    alert("Please choose from the following options. You must choose at least one.");
+    var promptSpecial = confirm ("Would you like special characters in your password?");
+    var promptNumeric = confirm ("Would you like numbers in your password?");
+    var promptLowercase = confirm ("Would you like lowercase letters in your password?")
+    var promptUppercase = confirm ("Would you like uppercase letters in your password?")
+    var result = "";
+    
+    //Must make i < the legnth of the password, which is determined by the user.
+    var pword = prompt ("How many characters would you like in your password? Please choose a number between 8 and 128.");
+    
+    //Make a password from the things that the person chose...
+    //So combine the necessary arrays depending on what the user chose.
+    if(promptSpecial) { 
+      mixedArray += special; 
+    }
+      
+    if (promptNumeric) {
+      mixedArray += numeric;
+    }
+          
+    if (promptLowercase) {
+      mixedArray += lowerCase;
+    }
+      
+    if (promptUppercase) {
+      mixedArray += upperCase;
+    }
+
+    //Finally, generate the password with the correct number of characters, and present the result.   
+    var i = 0;
+    while (i < pword) {
+      result += mixedArray[Math.floor(Math.random() * mixedArray.length)];
+      i++;
+    }
+  
+    if (pword < 8 || pword > 128) {
+      alert("No password for you!");
+    }
+    
+    if (mixedArray === "") {
+      alert("No password for you!");
+    }
+    
+    else {
+      document.getElementById('result').innerHTML = "Your password is " + result;
+    }
+  
+  </script>
+
+    
+</body>
+</html>
+
+<!--If you define variables within a function, can they still be referenced outside of the function?-->
+<!--shuffle function??-->
+
